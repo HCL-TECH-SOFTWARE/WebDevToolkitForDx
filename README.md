@@ -22,7 +22,7 @@ For any issues you encounter, please report them in the Issues area of this proj
 # Installation
 You must first install Node.js.  Node.js version 12 is the minimum version and has had the most testing.
 
-Download the digexp-toolkit.zip file from here: https://github.com/hcl-dx/WebDevToolkitForDx/release
+Download the digexp-toolkit.zip file from here: https://github.com/hcl-dx/WebDevToolkitForDx/tree/master/release
 
 First, extract the file on your workstation. Then if you are on Windows, run
 ```
