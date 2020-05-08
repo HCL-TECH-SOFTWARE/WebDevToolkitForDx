@@ -5,6 +5,8 @@ This toolkit includes two main areas of functionality:
 - A "Web Developer Dashboard" that provides a user interface for working with Script Portlets, Portal themes, and WCM design elements. The theme support uses the Digital Experience File Sync tool under the covers. The Script Portlet support uses the Script Portlet command line support which must be installed separately on your workstation.
 - A command line tool "dxwcmdesigns" for moving WCM design elements - Presentation Templates and Components - between your local file system and your Portal server. This functionality is also available from the Dashboard.
 
+![WCM Design Libraries](https://github.com/hcl-dx/WebDevToolkitForDx/raw/master/images/wcm-libs-screenshot.jpg "Sync WCM  Design Libraries")
+
 # Requirements
 To use these tools you will need:
 - Node.js must be installed on your workstation. Node.js version 12.14 is the minimum version and has had the most testing.
