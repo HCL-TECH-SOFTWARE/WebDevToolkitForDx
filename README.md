@@ -1,5 +1,5 @@
 # Web Developer Toolkit for HCL Digital Experience
-TThe Web Developer toolkit provides the ability to sync themes, content and script portlets (also known as script applications). It is available under the Apache License V2.0. 
+The Web Developer toolkit provides the ability to sync themes, content and script portlets (also known as script applications). It is available under the Apache License V2.0. 
 
 This toolkit includes two main areas of functionality:
 - A "Web Developer Dashboard" that provides a user interface for working with Script Portlets, Portal themes, and WCM design elements. The theme support uses the Digital Experience File Sync tool under the covers. The Script Portlet support uses the Script Portlet command line support which must be installed separately on your workstation.
