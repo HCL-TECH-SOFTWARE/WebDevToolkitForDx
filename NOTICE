@@ -1,0 +1,131 @@
+Web Developer Toolkit for HCL Digital Experience
+(C)Copyright HCL Technologies Ltd. 2001, 2020
+
+
+This product is licensed under the terms of the Apache 2.0 license.
+
+Third party code that the user must acquire:
+Angular version 1.3.15
+http://angularjs.org
+License: MIT (https://github.com/angular/angular.js/blob/master/LICENSE)
+
+Bootstrap version 3.3.5
+http://getbootstrap.com
+License: MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+
+nwjs version 0.42.0
+Link: https://www.npmjs.com/package/nwjs
+License: MIT (https://github.com/egoist/nwjs/blob/master/LICENSE)
+
+Referenced Dependencies:
+adm-zip version 0.4.14
+Link: https://www.npmjs.com/package/adm-zip
+License: MIT (https://github.com/cthackers/adm-zip/blob/master/MIT-LICENSE.txt)
+Used in Dashboard
+
+anymatch version 3.1.1
+https://www.npmjs.com/package/anymatch
+License: ISC (https://github.com/micromatch/anymatch/blob/master/LICENSE)
+Used in Dashboard
+
+Async.js version 3.2.0
+https://www.npmjs.com/package/async
+License: MIT (https://github.com/caolan/async/blob/master/LICENSE)
+Used in: Dashboard
+
+Chokidar version 3.3.1
+https://www.npmjs.com/package/chokidar
+License: MIT (https://github.com/paulmillr/chokidar/blob/master/LICENSE)
+Used in Dashboard
+
+Diff version 4.0.2
+https://www.npmjs.com/package/diff
+License: BSD-3-clause (https://github.com/kpdecker/jsdiff/blob/master/LICENSE)
+Used in Dashboard
+
+Dxsync (by HCL)
+https://github.com/hcl-dx/dxsync
+License: Apache (https://github.com/hcl-dx/dxsync/blob/master/LICENSE)
+Used in dashboard
+
+Express version 4.17.1
+https://www.npmjs.com/package/express
+License: MIT (https://github.com/expressjs/express/blob/master/LICENSE)
+Used in SP-server
+
+Findit version 2.0.0
+https://www.npmjs.com/package/findit
+License: MIT (https://github.com/substack/node-findit/blob/master/LICENSE)
+Used in dashboard, WCM designs
+
+Graceful-fs version 4.2.3
+https://www.npmjs.com/package/graceful-fs
+License: ISC (https://github.com/isaacs/node-graceful-fs/blob/master/LICENSE)
+Used in WCM designs
+
+Hashmap version 2.4.0
+https://www.npmjs.com/package/hashmap
+License: MIT (https://github.com/flesler/hashmap/blob/master/LICENSE)
+Used in WCM designs
+
+MapStream version 0.0.7
+https://www.npmjs.com/package/map-stream
+License: MIT (https://github.com/dominictarr/map-stream/blob/master/LICENCE)
+Used in dashboard
+
+mkdirp version 1.0.3
+https://www.npmjs.com/package/mkdirp
+License: MIT (https://github.com/substack/node-mkdirp/blob/master/LICENSE)
+Used in dashboard
+
+node-fetch version 2.6.0
+https://www.npmjs.com/package/node-fetch
+License: MIT (https://github.com/node-fetch/node-fetch/blob/master/LICENSE.md)
+Used in dashboard, SP-server
+
+Node-notifier version 5.4.3
+https://www.npmjs.com/package/node-notifier
+License: MIT (https://github.com/mikaelbr/node-notifier/blob/master/LICENSE)
+Used in dashboard
+
+Open version 7.0.3
+https://www.npmjs.com/package/open
+License: MIT (https://github.com/pwnall/node-open/blob/master/LICENSE)
+Used in dashboard
+
+q version 1.5.1
+https://www.npmjs.com/package/q
+License: MIT (https://github.com/kriskowal/q/blob/v1/LICENSE)
+Used in WCM designs
+
+prompt version 1.0.0
+https://www.npmjs.com/package/prompt
+License: MIT (https://github.com/flatiron/prompt/blob/master/LICENSE)
+Used in WCM designs
+
+splint version 0.1.0
+https://github.com/OpenNTF/Script-Portlet-Node-Samples
+License: Apache License (https://github.com/OpenNTF/Script-Portlet-Node-Samples/blob/master/LICENSE)
+Used in dashboard
+
+Tracer version 1.0.2
+https://www.npmjs.com/package/tracer
+License: MIT (https://github.com/baryon/tracer#license)
+Used in dashboard, WCM designs
+
+Vinyl version 2.2.0
+https://www.npmjs.com/package/vinyl
+License: MIT (https://github.com/wearefractal/vinyl/blob/master/LICENSE)
+Used in dashboard
+
+Vinyl-fs version 3.0.3
+https://www.npmjs.com/package/vinyl-fs
+License: MIT (https://github.com/wearefractal/vinyl-fs/blob/master/LICENSE)
+Used in dashboard
+
+Yargs version 15.3.0
+https://www.npmjs.com/package/yargs
+License: MIT (https://github.com/bcoe/yargs/blob/master/LICENSE)
+Used in WCM designs
+
+ 

@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+**/npm-debug.log
+**/node_modules/**
+/build
+*.project
+packs/dxsync/
+.DS_Store
+packs/package/
