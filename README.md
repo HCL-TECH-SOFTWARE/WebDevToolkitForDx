@@ -221,3 +221,7 @@ There are some options that can be set to control some of the behavior when down
 To turn on the trial features for all libraries you can set an environment variable DIGEXP_TRIAL=true.
 
 Note that the tool cannot handle empty Content Templates (Authoring Templates) at this time.
+
+## Support
+
+In case of questions or issues please raise via Issues tab in this github repository. HCL Support will make every reasonable effort to assist in problem resolution of any issues found in this software.
