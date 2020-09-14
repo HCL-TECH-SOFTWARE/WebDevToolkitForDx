@@ -10,7 +10,7 @@
 ## Run Websphere Portal
 
 ```bash
-docker run -p 30015:30015 ibmcom/websphere-portal:latest
+docker run -p 30015:30015 -p 30005:30005 ibmcom/websphere-portal:latest
 
 # When you see log: "Server WebSphere_Portal open for e-business; process id is 118", the HCL portal server is started successfully
 ```
@@ -27,9 +27,6 @@ In project root folder, run:
 # Install dependencies
 npm install
 
-# Pack packages in `packs` folder
-npm run gulp pack
-
 # Create release zip in `build` folder
 npm run grunt build
 ```
@@ -41,13 +38,12 @@ npm run grunt build
 In project root folder, run:
 
 ```bash
-./install.sh
-# or run `install.cmd` on Windows
+npm install -g
 ```
 
 The install will take several minutes (mainly due to the install of nw.js), be patient.
 
-To uninstall, run `./uninstall.sh` or `uninstall.cmd` on Windows.
+To uninstall, run `npm uninstall -g`.
 
 
 

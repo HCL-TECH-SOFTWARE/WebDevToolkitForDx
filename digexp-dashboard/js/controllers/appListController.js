@@ -32,8 +32,8 @@ dashboardControllers.controller('AppsListController', ['$scope', '$route', '$loc
     var watchProcesses = {};
     var baseServerUrl = 'http://localhost:' + SERVER_PORT + '/'; // TODO make sure that server runs on this port
 
-    var spPushSuccessReg = /successful/i,
-        spPushFailureReg = /failed/i;
+    var spPushSuccessReg = /sp_watch_push_successful/i,
+        spPushFailureReg = /sp_watch_push_failed/i;
 
     $scope.appList = function() {
       return Object.keys($scope.apps)
@@ -425,7 +425,7 @@ dashboardControllers.controller('AppsListController', ['$scope', '$route', '$loc
           $scope.apps[id].loading++;
           $scope.$apply(); // update the UI
         }
-        debugLogger.log("watch " + id + " stdout: " + data);
+        console.log("watch " + id + " stdout: " + data);
       });
       watchProcesses[id].stderr.on("data", function(data) {
         if (data.toString().match(spPushFailureReg)) { // todo check for sucess/failure more rigorously
@@ -522,49 +522,38 @@ dashboardControllers.controller('AppsListController', ['$scope', '$route', '$loc
         'message': "Starting push " + id
       });
 
-      var sp = "sp";
+       spCmd = spCmd || require('digexp-sp-cmd/src/index');
+       var args = ['push', '-contentRoot', path.resolve(applicationsFolder, id), ...utils.makeServerArgs($scope.server)];
+       spCmd.run(args).then(function(result) {
+            $scope.apps[id].spCommandFailed = false;
 
-      if (process.platform !== "win32") {
-        sp += ".sh";
-      }
-       var Path = require('path');
-       ch.exec(sp + ' push -contentRoot "' + applicationsFolder + Path.sep + id + '"' + makeServerArgs(),
-        { cwd: applicationsFolder + "/" + id },
-        function(err, stdout, stderr) {
-          debugLogger.log("done!");
-          if (err !== null) {
+            var notifyMessage = "";
+            if (result.success) {
+                __pushStatuses[id] = $scope.apps[id].pushStatus = "success";
+                notifyMessage = "Success pushing " + id;
+                $scope.apps[id].datePushed = new Date();
+                $scope.updateSpConfig(id);
+            } else {
+                __pushStatuses[id] = $scope.apps[id].pushStatus = "fail";
+                notifyMessage = "Failure pushing " + id;
+            }
+
+            utils.notify({
+                'title': digExperienceDashboard,
+                'message': notifyMessage
+            });
+            debugLogger.log(JSON.stringify(result));
+       }).catch(function(err) {
             console.error('exec error: ' + err);
             utils.notify({
-              'title': digExperienceDashboard,
-              'message': err.message
+                'title': digExperienceDashboard,
+                'message': err.message
             });
-            $scope.apps[id].spCommandFailed = err.message.match(/^Command failed/) ? true : false;
-          } else {
-            $scope.apps[id].spCommandFailed = false;
-          }
-
-          var notifyMessage = "";
-          if (stdout.match(spPushSuccessReg)) {
-            __pushStatuses[id] = $scope.apps[id].pushStatus = "success";
-            notifyMessage = "Success pushing " + id;
-            $scope.apps[id].datePushed = new Date();
-            $scope.updateSpConfig(id);
-          }
-          if (stderr.match(spPushFailureReg)) {
-            __pushStatuses[id] = $scope.apps[id].pushStatus = "fail";
-            notifyMessage = "Failure pushing " + id;
-          }
-
-          utils.notify({
-            'title': digExperienceDashboard,
-            'message': notifyMessage
-          });
-          debugLogger.log(stdout);
-          stderr && console.warn(stderr);
-
+            $scope.apps[id].spCommandFailed = true;
+       }).finally(function() {
           $scope.apps[id].loading--;
           $scope.$apply();
-        });
+       });
     };
 
     var prePush = function(id, cb) {
@@ -632,23 +621,6 @@ dashboardControllers.controller('AppsListController', ['$scope', '$route', '$loc
         }, 10000);
       };
       wait();
-    };
-
-    var makeServerArgs = function() {
-      var server = $scope.server;
-      var args = "";
-      if (server.host || server.port) {
-        args +=  " -scriptPortletServer http://" + server.host + ":" + server.port;
-      }
-      if (server.userName && server.password) {
-        args += " -portalUser " + server.userName + " -portalPassword " + server.password;
-      }
-      var cPath = server.contenthandlerPath.split('/');
-      if (cPath.length > 3){
-         args += " -virtualPortalID " + cPath[3];
-      };
-
-      return args;
     };
 
     $scope.orderApps = function(app) {

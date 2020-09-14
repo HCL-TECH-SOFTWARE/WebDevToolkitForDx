@@ -1,0 +1,15 @@
+#! /usr/bin/env node
+
+var ch = require("child_process");
+var path = require("path");
+
+ch.exec(path.resolve(__dirname, "../node_modules/.bin/nw"), { cwd: path.resolve(__dirname, "../digexp-dashboard") }, function(err, stdout, stderr) {
+  if (err) {
+    console.error("ERROR");
+    if (stderr) {
+      console.error(stderr);
+    } else {
+      console.error(err);
+    }
+  }
+});

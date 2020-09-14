@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+const { run } = require('../digexp-sp-cmd/src/index');
+
+run(process.argv.slice(2));

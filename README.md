@@ -1,23 +1,35 @@
 # Web Developer Toolkit for HCL Digital Experience
 The Web Developer toolkit provides the ability to sync themes, content and script portlets (also known as script applications). It is available under the Apache License V2.0. 
 
-This toolkit includes two main areas of functionality:
+This toolkit includes four main areas of functionality:
 - A "Web Developer Dashboard" that provides a user interface for working with Script Portlets, Portal themes, and WCM design elements. The theme support uses the Digital Experience File Sync tool under the covers. The Script Portlet support uses the Script Portlet command line support which must be installed separately on your workstation.
-- A command line tool "dxwcmdesigns" for moving WCM design elements - Presentation Templates and Components - between your local file system and your Portal server. This functionality is also available from the Dashboard.
+![WCM Design Libraries](images/wcm-libs-screenshot.jpg "Sync WCM  Design Libraries")
+- A command line tool `dxwcmdesigns` for moving WCM design elements - Presentation Templates and Components - between your local file system and your Portal server. This functionality is also available from the Dashboard.
+- A command line tool `dxsync` for synchronizing any WebDAV-based HCL Digital Experience themes with your local workstation. This functionality is also available from the Dashboard.
+- A command line tool `sp` to pull & push script portlets.
 
-![WCM Design Libraries](https://github.com/hcl-dx/WebDevToolkitForDx/raw/master/images/wcm-libs-screenshot.jpg "Sync WCM  Design Libraries")
+
+
 
 # Requirements
 To use these tools you will need:
 - Node.js must be installed on your workstation. Node.js version 12.14 is the minimum version and has had the most testing.
+
+  Note: You can verify that node.js is installed by running the following commands:
+
+    `node -v`
+
 - For the WCM support you need Portal 8.5 with CF05 or later. 
-- For the theme support you need Portal 8.5. Under the covers, code from DX File Sync package is automatically installed when you install this Toolkit.
-- For Script Portlet "push" you will need to have the Script Portlet command line client installed, and your server must have Script Portlet installed.
+
+- For the theme support you need Portal 8.5. Under the covers, code from [DX File Sync package](./digexp-dxsync/README.md) is automatically installed when you install this Toolkit.
+
+- For Script Portlet "push" your server must have Script Portlet installed. Under the covers, code from [Script Portlet package](./digexp-sp-cmd/README.md) is automatically installed when you install this Toolkit.
+
 - We have tested successfully on Mac OS X 10.15, Ubuntu 18.0x, Windows 7, and Windows 10. See below for potential issues with the required nw.js library on some operating system versions.
 
 ## Known issues and troubleshooting
 
-The Dashboard tool uses the nw.js package to implement the user interface, and on some operating system versions such as CentOS there have been issues with some of the dependency packages for nw.js. We've also had reports of issues on Windows 10. If the install fails during the nw.js installation phase, or if the Dashboard doesn't launch successfully, you can try installing and running nw.js (https://www.npmjs.com/package/nw) on its own to see if it's a compatibility problem with that library.
+The Dashboard tool uses the nw.js package to implement the user interface, and on some operating system versions such as CentOS there have been issues with some of the dependency packages for nw.js. We've also had reports of issues on Windows 10. If the install fails during the nw.js installation phase, or if the Dashboard doesn't launch successfully, you can try installing and running example nw.js app (https://www.npmjs.com/package/nw#example) on its own to see if it's a compatibility problem with that library.
 
 For any issues you encounter, please report them in the Issues area of this project (https://github.com/hcl-dx/WebDevToolkitForDx/issues).  We try to respond promptly to reported issues.
 
@@ -26,43 +38,32 @@ You must first install Node.js.  Node.js version 12 is the minimum version and h
 
 Download the digexp-toolkit.zip file from here: https://github.com/hcl-dx/WebDevToolkitForDx/tree/master/release
 
-First, extract the file on your workstation. Then if you are on Windows, run
+First, extract the file on your workstation. Then goto the extracted folder and run
 ```
-install.cmd
+npm install -g
 ```
+The install will take several minutes (mainly due to the install of nw.js), be patient.
 
-or if you are on Mac or Linux, run:
-```bash
-# use `sudo` if necessary
-chmod a+x ./install.sh
-./install.sh
-```
+This will install the four main programs:
 
-This will install the two main programs, dxdashboard (for the dashboard UI) and dxwcmdesigns (the command line support for accessing WCM design libraries). That completes the installation.  
+-  `dxdashboard` (for the dashboard UI)
+-  `dxwcmdesigns` (the command line support for accessing WCM design libraries).
+- `dxsync` (the command line support for accessing WebDAV-based HCL Digital Experience themes)
+- `sp` (the command line support for accessing Script Portlets)
 
 In case you are seeing an error like ```Missing write access to /usr/local/lib/node_modules``` you can fix it via the following:
 ``` sudo chown -R $USER /usr/local/lib/node_modules ```.
 
 If you are behind a proxy server, the nw package used by the Dashboard requires setting the http_proxy environment variable prior to running install. See this page for more information: https://www.npmjs.com/package/nw.
 
-For the Script Portlet "Push" support, you will need to have the Script Portlet command line client support installed and configured, and you will need to have the "sp" command on your system path. See this documentation for more on installing the Script Portlet command line client: https://help.hcltechsw.com/digital-experience/8.5/script-portlet/cmd_line_push_cmd.html
-General information on the script portlet can be found here: https://help.hcltechsw.com/digital-experience/8.5/script-portlet/script_portlet.html 
-
 # Upgrade 
 If you are upgrading an existing installation you should remove it using uninstall and then install the new version.
 See instructions for uninstall below. 
 
 # Uninstall
-If you want to uninstall the toolkit, if you are on Windows, run
+If you want to uninstall the toolkit, run
 ```
-uninstall.cmd
-```
-
-or if you are on Mac or Linux, run:
-```bash
-# use `sudo` if necessary
-chmod a+x ./uninstall.sh
-./uninstall.sh
+npm uninstall -g
 ```
 
 # Using the Web Developer Dashboard
@@ -96,7 +97,7 @@ toolkit provides a graphical interfaces for pushing script portlet applications.
 Pressing the "push" button will invoke the [`sp` command](https://help.hcltechsw.com/digital-experience/8.5/script-portlet/cmd_line_push_cmd.html) and push the 
 application to the active server specified in the settings. If an `sp-config.json`
 file exists, it will be used when pushing the application. Pressing the gear button
-will open a dialog for editing the application's `sp_config.json` file.
+will open a dialog for editing the application's `sp-config.json` file.
 
 In the same dialog box (at the bottom), there is an option to set a pre-push command
 which can be used for minifying javascript, transpiling coffeescript, SASS, etc., 
@@ -123,104 +124,11 @@ To work with theme files locally, first click "Get Themes" followed by "View Ser
 ## Working with WCM design files in the Dashboard
 To work with WCM design files locally, first click "Get Libraries" followed by "View Libraries." Then select the library or libraries you want to work with and click "Download Selected Libraries." To update the server with new or modified files, click "Push Updates" or "Push All." The "Pull" button will download all files. The "Watch" button will watch for changes to files in the local folder and push those changes automatically. Note that the "Push" commands won't delete any components on the server; for that you would need to use the WCM Authoring tools.
 
-See below for details on the components that are supported with the WCM features.
+# Limitations
 
-# Using the"dxwcmdesigns"  command line utility
-Note that all the functionality for push/pull of WCM design files is available from the Dashboard user interface. For the command line support, use:
-```
-$ dxwcmdesigns <command> [options]
-```
-
-The commands are described below.
-
-## init
-Usage:
-```
-$ dxwcmdesigns init [options]
-```
-Running this command will display a prompt to select a WCM library. A subdirectory
-will be created (in the current working directory) and the selected library will be
-downloaded in it.
-
-The available options are:
-- `-d`, `--dir`: The directory that will contain the WCM library. By default, it will be
-  the current working directory.
-- `-h`, `--help`: Displays the help for the init command.
-
-## push
-Usage:
-```
-$ cd <path to the wcm library>
-$ dxwcmdesigns push [options]
-```
-Running this command will push the source files to WCM and update the library on the server.
-
-The available options are:
-- `-a`, `--all`: Pushes all files if specified. If it's not specified, then only
-  the files that have been modified since the last push/pull will be pushed.
-- `-d`, `--dir`: The local directory of the WCM library. By default, it will be
-  the current working directory.
-- `-v`, `--verbose`: To get verbose output.
-- `-h`, `--help`: Displays the help for the push command.
-
-## pull
-Usage:
-```
-$ cd <path to the wcm library>
-$ dxwcmdesigns pull [options]
-```
-This command will download any remote changes to the WCM library. First run `dxwcmdesigns init`
-to initialize the WCM library before using `dxwcmdesigns pull`.
-
-The available options are:
-- `-d`, `--dir`: The local directory of the WCM library. By default, it will be
-  the current working directory.
-- `-v`, `--verbose`: To get verbose output.
-- `-h`, `--help`: Displays the help for the pull command.
-
-# Notes on WCM design library support
-The supported WCM types are:
-- HTML Component
-- Image Component
-- Style Sheet Component
-- Text Component
-- Rich Text Component
-- Presentation Template
-- File Component
-- Content Template(Authoring Template)
-- Date Component (with trial option enabled)
-- Reference Component (with trial option enabled)
-- Jsp Component (with trial option enabled)
-- Link Component  (with trial option enabled)
-- Numeric Component (with trial option enabled)
-- Custom Workflow Action (with trial option enabled)
-- Workflow Stage (with trial option enabled)
-
-Other Component types and Content Items are not supported.
-
-There are some options that can be set to control some of the behavior when downloading from WCM. To do this, open the ".settings" file in the folder for a library and add an "options" object. There are some options that you can set as shown here:
-```
-"options": {
-    "includeMeta": false,
-    "filterComponentId": true,
-    "pullParallel": true,
-    "trial":true,
-    "include":[
-       "PresentationTemplate",
-       "LibraryStyleSheetComponent",
-       "LibraryImageComponent"
-   	]
-},
-```
-- includeMeta: If set to true, each component will have a corresponding <name>-md.json file containing all the metadata from WCM.
-- filterComponentId: If set to true, any Component tags in the downloaded data will include the ID of the referenced Component. By default these IDs are are removed, and the "name" attribute is used to identify the referenced Component.
-- pullParallel: If set to true, requests to the server for components are done in parallel wich can speed up the download of large libraries. By default components are synced sequentially.
-- trial: if set any new features that have been added but not fully testes are added
-- include: This is an array of item types that allows you to limit the types of items that will be included in the pushed/pull actions for this library, this list will only support types that are handled by default. It allows you to limit the types to a subset of the supported types.  i.e. Some one that only works on icons could limit it to "LibraryImageComponent"
-
-To turn on the trial features for all libraries you can set an environment variable DIGEXP_TRIAL=true.
-
-Note that the tool cannot handle empty Content Templates (Authoring Templates) at this time.
+1. Start and Stop the watcher on same function/tab.
+2. Script Portlet export option is not available on dxdashboard, it is only enabled in cli now.
+3. Script Portlet command line tool available to download via DX is an old deprecatted version. For the latest use the one in this toolkit.
 
 ## Support
 

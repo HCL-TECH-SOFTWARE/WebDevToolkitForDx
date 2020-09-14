@@ -1,0 +1,21 @@
+{
+	"scriptPortletServer": "http://127.0.0.1:30015",
+	"laxSSL": false,
+	"performAuth": true,
+	"portalUser": "wpsadmin",
+	"portalPassword": "wpsadmin",
+	"wcmSiteArea": "Script Application Library/Script Applications/",
+	"excludes": [
+		"^bin$",
+		"^lib$",
+		"^src$",
+		"^node_modules$",
+		"^\\.classpath$",
+		"^\\.project$",
+		"^\\..*ignore$",
+		"^sp-config.json$",
+		"^sp-cmdln.log$",
+		"^sp.bat$",
+		"^sp.sh$"
+	]
+}

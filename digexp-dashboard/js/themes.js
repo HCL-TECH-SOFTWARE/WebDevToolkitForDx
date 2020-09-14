@@ -9,10 +9,10 @@
  */
 var themeFolder = dashConfig.getConfigInfo().dxThemePath;
 
-var logDir = path.resolve(process.cwd(), "dxsync/");
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
-}
+// var logDir = path.resolve(process.cwd(), "dxsync/");
+// if (!fs.existsSync(logDir)) {
+//   fs.mkdirSync(logDir);
+// }
 
 // Setup the dxsync logger
 /*

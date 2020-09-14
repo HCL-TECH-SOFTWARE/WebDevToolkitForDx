@@ -128,4 +128,144 @@ https://www.npmjs.com/package/yargs
 License: MIT (https://github.com/bcoe/yargs/blob/master/LICENSE)
 Used in WCM designs
 
+aes256@1.0.4
+licenses: MIT
+repository: https://github.com/JamesMGreene/node-aes256
+licenseUrl: https://github.com/JamesMGreene/node-aes256/raw/master/LICENSE
+
+colors@1.4.0
+licenses: MIT
+repository: https://github.com/Marak/colors.js
+licenseUrl: https://github.com/Marak/colors.js/raw/master/LICENSE
+
+fs-extra@8.1.0
+licenses: MIT
+repository: https://github.com/jprichardson/node-fs-extra
+licenseUrl: https://github.com/jprichardson/node-fs-extra/raw/master/LICENSE
+
+node-notifier@5.4.3
+licenses: MIT
+repository: https://github.com/mikaelbr/node-notifier
+licenseUrl: https://github.com/mikaelbr/node-notifier/raw/master/LICENSE
+
+pathwatcher@8.1.0
+licenses: MIT
+repository: https://github.com/atom/node-pathwatcher
+licenseUrl: https://github.com/atom/node-pathwatcher/raw/master/LICENSE.md
+
+prompt@1.0.0
+licenses: MIT
+repository: https://github.com/flatiron/prompt
+licenseUrl: https://github.com/flatiron/prompt/raw/master/LICENSE
+
+q@1.5.1
+licenses: MIT
+repository: https://github.com/kriskowal/q
+licenseUrl: https://github.com/kriskowal/q/raw/master/LICENSE
+
+request@2.88.0
+licenses: Apache-2.0
+repository: https://github.com/request/request
+licenseUrl: https://github.com/request/request/raw/master/LICENSE
+
+throat@5.0.0
+licenses: MIT
+repository: https://github.com/ForbesLindesay/throat
+licenseUrl: https://github.com/ForbesLindesay/throat/raw/master/LICENSE
+
+tracer@1.0.1
+licenses: MIT
+repository: https://github.com/baryon/tracer
+licenseUrl: https://github.com/baryon/tracer
+
+xml2js@0.4.22
+    licenses: MIT
+    repository: https://github.com/Leonidas-from-XIV/node-xml2js
+    licenseUrl: https://github.com/Leonidas-from-XIV/node-xml2js/raw/master/LICENSE
+
+@babel/core@7.7.4
+licenses: MIT
+repository: https://github.com/babel/babel/tree/master/packages/babel-core
+licenseUrl: https://github.com/babel/babel/raw/master/LICENSE
+
+@babel/register@7.7.4
+licenses: MIT
+repository: https://github.com/babel/babel/tree/master/packages/babel-register
+licenseUrl: https://github.com/babel/babel/raw/master/LICENSE
+
+babel-plugin-rewire@1.2.0
+licenses: ISC
+repository: https://github.com/speedskater/babel-plugin-rewire
+licenseUrl: https://github.com/speedskater/babel-plugin-rewire#license
+
+download-npm-package@3.1.12
+licenses: MIT
+repository: https://github.com/kesla/download-npm-package
+licenseUrl: https://github.com/kesla/download-npm-package/raw/master/license
+
+execa@3.4.0
+licenses: MIT
+repository: https://github.com/sindresorhus/execa
+licenseUrl: https://github.com/sindresorhus/execa/raw/master/license
+
+eslint@6.7.2
+licenses: MIT
+repository: https://github.com/eslint/eslint
+licenseUrl: https://github.com/eslint/eslint/raw/master/LICENSE
+
+eslint-plugin-node@10.0.0
+licenses: MIT
+repository: https://github.com/mysticatea/eslint-plugin-node
+licenseUrl: https://github.com/mysticatea/eslint-plugin-node/raw/master/LICENSE
+
+grunt@1.0.4
+licenses: MIT
+repository: https://github.com/gruntjs/grunt
+licenseUrl: https://github.com/gruntjs/grunt/raw/master/LICENSE
+
+grunt-contrib-compress@1.6.0
+licenses: MIT
+repository: https://github.com/gruntjs/grunt-contrib-compress
+licenseUrl: https://github.com/gruntjs/grunt-contrib-compress/raw/master/LICENSE-MIT
+
+jshint@2.10.3
+licenses: (MIT AND JSON)
+repository: https://github.com/jshint/jshint
+licenseUrl: https://github.com/jshint/jshint/raw/master/LICENSE
+
+jshint-full-path@1.1.1
+licenses: MIT
+repository: https://github.com/tomgco/jshint-full-path
+licenseUrl: https://github.com/tomgco/jshint-full-path/raw/master/LICENSE
+
+mocha@6.2.2
+licenses: MIT
+repository: https://github.com/mochajs/mocha
+licenseUrl: https://github.com/mochajs/mocha/raw/master/LICENSE
+
+mock-stdin@1.0.0
+licenses: MIT
+repository: https://github.com/caitp/node-mock-stdin
+licenseUrl: https://github.com/caitp/node-mock-stdin/raw/master/LICENSE
+
+nyc@14.1.1
+licenses: ISC
+repository: https://github.com/istanbuljs/nyc
+licenseUrl: https://github.com/istanbuljs/nyc/raw/master/LICENSE.txt
+
+should@13.2.3
+licenses: MIT
+repository: https://github.com/shouldjs/should.js
+licenseUrl: https://github.com/shouldjs/should.js/raw/master/LICENSE
+
+source-map-support@0.5.16
+licenses: MIT
+repository: https://github.com/evanw/node-source-map-support
+licenseUrl: https://github.com/evanw/node-source-map-support/raw/master/LICENSE.md
+
+webdav-server@2.6.1
+    licenses: Unlicense
+    repository: https://github.com/OpenMarshal/npm-WebDAV-Server
+    licenseUrl: https://github.com/OpenMarshal/npm-WebDAV-Server/raw/master/LICENSE
+
  

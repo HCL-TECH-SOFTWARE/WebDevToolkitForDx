@@ -1,0 +1,12 @@
+{
+    "excludeFiles": [
+        "frontend/**",
+        "node_modules/**",
+        "build/**",
+        "lib/**",
+        "test/**",
+        "coverage"
+    ],
+    "preset": "jquery",
+    "maximumLineLength" : 200
+}

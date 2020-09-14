@@ -39,4 +39,5 @@ var bower,
     AdmZip,
     splint,
     vfs,
-    spAppServer;
+    spAppServer,
+    spCmd;

@@ -15,7 +15,7 @@ described below.
 To install:
 - You must have Node.js and npm installed.
 - Download this source code from Git.
-- From the digexp-sp-server folder, run:
+- From the parent folder of digexp-sp-server, run:
 ```
 npm install
 ```
@@ -33,7 +33,7 @@ In your package.json file, include:
 
 ```
 "dependencies": {
-    "ScriptAppServer": "file:../<path to sp-server.tar.gz>",
+    "ScriptAppServer": "file:../<path to digexp-sp-server>",
 }
 ```
 

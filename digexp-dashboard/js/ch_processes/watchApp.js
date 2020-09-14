@@ -12,6 +12,7 @@ process.title = "digexp-dashboard watch";
 var chokidar = require("chokidar");
 var exec = require("child_process").exec;
 var anymatch = require("anymatch");
+var utils = require("../utils");
 
 var directory = process.argv[2];
 var buildCommand = process.argv[3] || "";
@@ -32,41 +33,30 @@ console.log("server args:");
 console.log(server);
 console.log("ignoring:" + toIgnore);
 
-// TODO not duplicate from app controller
-var makeServerArgs = function() {
-  // todo https or http
-  var args = "";
-  if (server.host || server.port) {
-    args +=  " -scriptPortletServer http://" + server.host + ":" + server.port;
-  }
-  if (server.userName && server.password) {
-    args += " -portalUser " + server.userName + " -portalPassword " + server.password;
-  }
-  return args;
-};
-
 var build = function(cb) {
   exec(buildCommand, { cwd: directory }, function(err, stdout, stderr) {
-    if (err)    console.warn("watch build" + err);
-    if (stdout) console.log("watch build" + stdout);
-    if (stderr) console.warn("watch build" + stderr);
+    if (err)    console.warn("watch build error: " + err);
+    if (stdout) console.log("watch build stdout: " + stdout);
+    if (stderr) console.warn("watch build stderr: " + stderr);
 
     cb && cb();
   });
 };
 
 var push = function() {
-      var sp = "sp";
-      if (process.platform !== "win32") {
-        sp += ".sh";
-      }
+  var spCmd = require('digexp-sp-cmd/src/index');
+  var args = ['push', '-contentRoot', directory, ...utils.makeServerArgs(server)];
 
-  exec(sp + ' push -contentRoot "' + directory + '"' + makeServerArgs(), { cwd: directory },
-    function(err, stdout, stderr) {
-      if (err)    console.warn("watch push" + stderr);
-      if (stdout) console.log("watch push" + stdout);
-      if (stderr) console.warn("watch push" + stderr);
-    });
+  spCmd.run(args).then(function(result) {
+    if (result.success) {
+        console.log('sp_watch_push_successful');
+    } else {
+        console.warn('sp_watch_push_failed');
+    }
+  }).catch(function(err) {
+    console.warn('sp_watch_push_failed');
+    console.error('exec error: ' + err);
+  })
 };
 
 var run = function(path) {
@@ -74,7 +64,6 @@ var run = function(path) {
       || (toIgnore && toIgnore.length && anymatch(toIgnore, path))) {
     return;
   }
-  console.log(path);
   console.log("push_starting, " + path + " modified");
   if (buildCommand) {
     build(push);

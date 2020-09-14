@@ -1,0 +1,70 @@
+USAGE
+
+sp                         - Print usage help to the console.
+sp help                    - Print detailed help to the console.
+sp list projects [OPTIONS] - List WCM projects present in the Portal server.
+sp list vportals [OPTIONS] - List virtual portals hosted by the Portal server.
+sp push [OPTIONS]          - Create or update the content of a Script Application.
+
+COMMON GENERAL OPTIONS
+
+-contentRoot <value>
+    Absolute or relative path to the Script Application's content.
+
+-scriptPortletServer <value>
+    The URL of the Portal server hosting the Script Application environment.
+
+-contenthandlerPath <value>
+	The path to the contenthandler servlet on the Script Application server.
+
+-portalUser <value>
+    The name of the Portal user for authentication.
+
+-portalPassword <value>
+    The password of the Portal user for authentication.
+
+COMMON PUSH OPTIONS
+
+-mainHtmlFile <value>
+    Path to the main HTML file of the Script Application. 
+
+-prebuiltZIP <value>
+    Absolute or relative path to the Script Application's content as a ZIP file.
+
+-wcmContentID <value>
+    WCM content ID of the Script Application instance.
+
+-wcmContentName <value>
+    Name of the Script Application instance to be created or updated.
+
+-wcmContentPath <value>
+    Full WCM path of the Script Application instance to be created or updated.
+
+-wcmContentTitle <value>
+    Sets or updates the title of the Script Application instance.
+
+EXAMPLE USAGE
+
+sp push
+    Update a Script Application with the content in the current working directory.
+
+sp push -contentRoot c:\applications\myApplication
+    Update a Script Application with the content in c:\applications\myApplication.
+
+sp push -contentRoot c:\applications\myApplication -mainHtmlFile starting.html
+    Update a Script Application with the content in c:\applications\myApplication.
+    starting.html in the myApplication directory is to be the first HTML file
+    rendered by the application.
+
+sp push -prebuiltZIP c:\myApplication.zip -mainHtmlFile first.html
+    Update a Script Application with the content in c:\myApplication.zip.
+    first.html in the root directory of the ZIP is to be the first HTML file
+    rendered by the application.
+
+sp push -wcmContentName "My Application"
+    Update a Script Application with the content in the current working directory.
+    If this is the first push, then a new application is created named "My Application".
+    If this content was pushed previously, then the content of "My Application" is
+    updated.
+
+
