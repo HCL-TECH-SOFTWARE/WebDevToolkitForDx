@@ -3,31 +3,11 @@
   "version": "0.1.5",
   "description": "WCM Designs",
   "main": "wcmHelper",
-  "bin": {
-    "dxwcmdesigns": "bin/dxwcmdesigns"
-  },
   "scripts": {
-    "test": "mocha"
+    "test": "../node_modules/.bin/mocha"
   },
   "dependencies": {
-    "findit": "2.0.0",
-    "graceful-fs": "4.2.3",
-    "hashmap": "2.4.0",
-    "prompt": "1.0.0",
-    "q": "1.5.1",
-    "tracer": "1.0.2",
-    "yargs": "15.3.0"
   },
   "devDependencies": {
-    "chai": "4.2.0",
-    "fs-extra": "8.1.0",
-    "mocha": "7.1.0"
-  },
-  "gitHead": "05c3bbb6af4a45ada3e819ca010cc985a6bea343",
-  "readme": "# Node.js tool prototypes for working with WCM design elements.\r\n\r\n\r\n",
-  "readmeFilename": "readme.md",
-  "_id": "digexp-wcm-design@0.0.1",
-  "_shasum": "4353ed0538b453d193a37636d4d164607fbd3f00",
-  "_from": "..\\..\\..\\AppData\\Local\\Temp\\npm-3600-7cfa8208\\git-cache-67a0b9c6345b\\05c3bbb6af4a45ada3e819ca010cc985a6bea343",
-  "_resolved": "git+ssh://git@git.design.ibm.com:dxnode/digexp-wcm-design.git#05c3bbb6af4a45ada3e819ca010cc985a6bea343"
+  }
 }

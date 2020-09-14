@@ -13,8 +13,10 @@ var tracer = require("tracer"),
     debugEnvironmentVar = process.env.DIGEXP_DEBUG || '',
     debugNames = debugEnvironmentVar.toUpperCase().split(','),
     debugFunctions = {};
-    if(debugEnvironmentVar.length != 0)
-        require('nw.gui').Window.get().showDevTools();
+    try {
+        if(debugEnvironmentVar.length != 0)
+            require('nw.gui').Window.get().showDevTools();
+    } catch(e) {}
 
 function debugLogger(moduleName) {
     moduleName = moduleName.toUpperCase();
@@ -127,7 +129,7 @@ utils.getUserSettingsName = function(){
 };
 
 function getUserHome() {
-  return os.homedir();
+  return require("os").homedir();
 }
 
 utils.parseDate = function(dateStr) {
@@ -154,3 +156,27 @@ utils.debugLogger = debugLogger;
 utils.encrypt = encrypt;
 utils.decrypt = decrypt;
 
+utils.makeServerArgs = function(server) {
+    var args = [];
+    if (server.host || server.port) {
+      args.push("-scriptPortletServer");
+      args.push(`${server.secure ? 'https':'http'}://${server.host}:${server.port}`);
+    }
+    if (server.userName && server.password) {
+      args.push("-portalUser");
+      args.push(server.userName);
+      args.push("-portalPassword");
+      args.push(server.password);
+    }
+    var cPath = server.contenthandlerPath.split('/');
+    if (cPath.length > 3){
+       args.push("-virtualPortalID");
+       args.push(cPath[3]);
+    };
+
+    return args;
+};
+
+if (typeof module !== 'undefined') {
+    module.exports = utils;
+}

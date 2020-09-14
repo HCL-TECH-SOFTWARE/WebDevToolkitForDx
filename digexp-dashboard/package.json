@@ -8,9 +8,6 @@
     "url": "https://github.com/hcl-dx/WebDevToolkitForDx.git"
   },
   "main": "dashboard_index.html",
-  "bin": {
-    "dxdashboard": "bin/dxdashboard"
-  },
   "window": {
     "show": true,
     "toolbar": false,
@@ -24,31 +21,11 @@
     "single-instance": false
   },
   "dependencies": {
-    "ScriptAppServer": "file:../packs/sp-server.tar.gz",
-    "adm-zip": "0.4.14",
-    "aes256": "1.0.4",
-    "anymatch": "3.1.1",
-    "async": "3.2.0",
-    "chokidar": "3.3.1",
-    "diff": "4.0.2",
-    "digexp-wcm-design": "file:../packs/wcm-design.tar.gz",
-    "dxsync": "file:../packs/dxsync-1.0.3.tgz",
-    "findit": "2.0.0",
-    "map-stream": "0.0.7",
-    "mkdirp": "1.0.3",
-    "node-fetch": "2.6.0",
-    "node-notifier": "5.4.3",
-    "open": "7.0.3",
-    "splint": "file:../packs/splint.tgz",
-    "tracer": "1.0.2",
-    "vinyl": "2.2.0",
-    "vinyl-fs": "3.0.3"
   },
   "config": {
     "unsafe-perm": true,
     "no-optional": true
   },
-  "scripts": {},
   "engines": {
     "node": ">=12"
   },

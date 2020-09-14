@@ -1,0 +1,248 @@
+NAME
+
+    sp - create and update Script Applications
+
+SYNOPSIS
+
+    sp [COMMAND] [OPTIONS]
+
+DESCRIPTION
+
+sp is a client-side tool used to automate the creation and update of Script
+Applications.  The tool simplifies the development process by allowing a
+user to associate a directory of content on their workstation with a specific
+instance of a Script Application and then push the content within the directory to
+Portal.  If the named Script Application instance does not exist, then it will be
+created on the first push.  Otherwise the content in the directory will replace
+the existing content of the application.
+
+This tool is an alternative to using a browser to manually import a ZIP file of
+the application's content.  The tool's design makes it easy to invoke from a command
+line or from an interactive development environment (IDE) to support an
+iterative code/test development style.
+
+The options used by the tool may be provided by configuration files or on the
+command line.  See the Options Configuration section below for more details.
+
+COMMAND
+
+help          - Print this documentation to the console.
+list projects - List the WCM projects present in the Portal server.
+list vportals - List the virtual portals hosted by the Portal server.
+push          - Create or update the content of a Script Application instance. 
+
+OPTIONS
+
+Portal Communication
+
+-scriptPortletServer <value>
+    The URL of the Portal server on which a Script Application environment has been
+    installed and where content will be pushed.  The value's required format is
+    "http://<host>:<port>" or "https://<host>:<port>".  Required for the list
+    and push commands.  If not provided, then the tool will prompt for the
+    value.  
+
+-contenthandlerPath <value>
+    The path to the contenthandler servlet on the Script Application server.  The
+    default value for this option is "/wps/mycontenthandler".  This option
+    will need to be provided if the server is using a custom portal context
+    root or servlet name.
+
+-laxSSL <true|false>
+    Specifies whether to accept or reject self-signed certificates when using
+    HTTPS to communicate with the Portal server.  The default value of false
+    rejects self-signed certificates.  
+
+-connectTimeout <value>
+    Specifies the maximum amount of time, in milliseconds, to wait for the tool
+    to connect to the Portal server.  The default value is 15000 (15 seconds).
+    An error will be generated if Portal does not accept the connection within
+    this time.
+
+-socketTimeout <value>
+    Specifies the maximum amount of time, in milliseconds, to wait for Portal to
+    respond to a command after a successful connection.  The default value is
+    15000 (15 seconds).  An error will be generated if Portal does not respond
+    to the command within this time.
+
+Portal Authentication
+
+-portalUser <value>
+    The name of the Portal user for authentication if the tool is challenged for
+    credentials while attempting to execute a command.  Required for all
+    commands when -performAuth is true.  If not provided, then the tool will
+    prompt for the value.
+
+-portalPassword <value>
+    The password of the Portal user for authentication if the tool is challenged
+    for credentials while attempting to execute a command.  Required for all
+    commands when -performAuth is true.  If not provided, then the tool will
+    prompt for the value.
+
+-performAuth <true|false>
+    Specifies whether the Portal server requires authentication before executing
+    a  command.  The default value of true causes the tool to require a user
+    name and password to be provided.  If the server does not require
+    authentication, then the user name and password are ignored if provided.
+
+Content Specification
+
+-contentRoot <value>
+    Absolute or relative path to a directory on the workstation containing the
+    content to be pushed to Portal.  If the path is relative, then it is
+    relative to the current working directory.  When the -prebuiltZIP option is
+    used the -contentRoot option specifies the directory containing the optional
+    JSON configuration file of the application and in which the log file of the push
+    command's execution is written.  The default value is the current working
+    directory.
+
+-prebuiltZIP <value>
+    Absolute or relative path to a ZIP file containing the content to be pushed
+    to Portal.  If the path is relative, then it is relative to the current
+    working directory.  This option has no default value.
+
+-mainHtmlFile <value>
+    Path to the main HTML file of the Script Application.  The main HTML
+    file is the first file rendered by the application.  If -contentRoot is
+    specified, then the HTML file path must be relative to the value of
+    -contentRoot.  When -prebuiltZIP is specified the HTML file path must be
+    relative to the top-level directory in the ZIP.  Required for the push
+    command.  If not specified, then the tool attempts to locate a file named
+    either "index.html" or "index.htm" at the path specified by -contentRoot or
+    in the top-level directory of the ZIP.  If one of these files is found, then
+    it is used as the value of the main HTML file.  Otherwise the tool will
+    prompt for the value. 
+
+Application/WCM Content Specification
+
+-wcmContentID <value>
+    The WCM content ID of the Script Application instance to be updated.  Required
+    by the push command when -wcmContentName and -wcmContentPath are not given.
+    This option has no default value.
+
+-wcmContentName <value>
+    The name of the Script Application instance to be created or updated.  Required
+    by the push command when -wcmContentID and -wcmContentPath are not given.
+    If required, then a value for -wcmSiteArea must also be provided so that a
+    full WCM content path can be formed and used for the creation or update.
+    This option has no default value.
+
+-wcmContentPath <value>
+    The full WCM path of the Script Application instance to be created or updated.
+    Required by the push command when -wcmContentID and -wcmContentName are not
+    given.  This option has no default value.
+
+-wcmContentTitle <value>
+    Sets or updates the title of the Script Application instance.  If not given when
+    the application is created, then the title will default to the name of the WCM
+    content item storing the Script Application.
+
+-wcmSiteArea <value>
+    The WCM site area in which Script Application instances will be created.
+    Required by the push command when -wcmContentID and -wcmContentPath are not
+    given.  The default value is "Script Portlet Library/Script Portlet
+    Applications/" and corresponds to the default site area created when the
+    Script Application environment was installed into Portal.
+
+-projectContext <value>
+    Specifies the ID or context of the Portal project used to manage the
+    publication of changes to the Script Application's content.  After updating the
+    Script Application's content an administrator will need to approve/publish the
+    project in order for the pushed changes to become effective on the site.
+    This option has no default value.
+
+-virtualPortalContext <value>
+    The context of the virtual Portal that contains the Script Application instance
+    to be created or updated.  Required when the content item to be updated
+    resides in a virtual Portal.  Optional if the content item to be updated
+    resides in the root virtual Portal or if the Portal server named by the
+    -scriptPortletServer option contains only the root virtual Portal.  This
+    option has no default value.
+
+OPTION CONFIGURATION
+
+The options used by the tool to execute a command can be assembled from several
+sources.  The options described above are provided on the command line.
+However, each of these options can also be set in a JSON configuration file so
+that they do not need to be specified on the command line each time the tool is
+executed.  When set in a JSON configuration file the leading dash of an option
+name must be omitted.  For example, defining portalUser in a JSON configuration
+file is equivalent to specifying -portalUser on the command line.
+
+In the home directory of the tool there is a file named sp-config.json which
+contains options to be used across all executions of the tool.  These are known
+as the baseline options.  Appropriate options for this file are those listed
+under the Portal Communication category since it's very common to have a single
+Portal server host all Script Application development work.  It may also be useful
+to set -portalUser in the baseline options if a single user name is used for all
+Script Application development work.
+
+The tool will also look for an sp-config.json file in the directory defined as
+the Script Application's content root via the -contentRoot option or, if
+-contentRoot is not specified, then in the current working directory.  If this
+file is found, then any options it defines are added to the baseline options.
+If the same option is defined in both files, then the value in the content
+root's sp-config.json file will take precedence.  Appropriate options for this
+file are those under the Application/WCM Content Specification category and the
+-mainHtmlFile option.
+
+Any options defined on the command line are added to the options obtained from
+the  the JSON configuration files with options specified on the command line
+taking precedence over those in the files.
+
+SECURITY CONSIDERATIONS
+
+If the Portal server requires authentication, then the password should not be
+defined in any JSON configuration file because the password must be stored in
+clear-text which would be a potential security vulnerability for the server.  A
+security best practice is to allow the tool to query for a password or use the
+-portalPassword command line option.  Letting the tool query for the password is
+preferred since the password will not be echoed on the command line nor will it
+appear in the command history of the shell used to execute the tool.
+
+EXAMPLE USAGE
+
+sp
+    Print abbreviated help to the console.
+
+sp push
+    The current working directory contains the Script Application content to be
+    pushed.  The user will be queried for any required options not provided by
+    the sp-config.json configuration files.  A log file of the execution is
+    written to the current working directory.
+
+sp push -contentRoot c:\applications\myApplication
+    The content to be pushed is located in c:\applications\myApplication.  The user will
+    be queried for any required options not provided by the configuration files.
+    A log file of the execution is written to c:\applications\myApplication.
+
+sp push -contentRoot c:\applications\myApplication -mainHtmlFile starting.html
+    The content to be pushed is located in c:\applications\myApplication.  In the
+    myApplication directory there is a file named starting.html which is to be the
+    first HTML file rendered by the application.  The user will be queried for any
+    required options not provided by the configuration files.  A log file of the
+    execution is written to c:\applications\myApplication.
+
+sp push -prebuiltZIP c:\myApplication.zip -mainHtmlFile first.html
+    The content to be pushed is contained in the c:\myApplication.zip file.  In the
+    root of the ZIP file there is an entry named first.html which is to be the
+    first file rendered by the application.  The user will be queried for any
+    required options not provided by the configuration files.  A log file of the
+    execution is written to the current working directory.
+
+sp push -wcmContentName "My Application"
+    The content to be pushed is contained in the current working directory.  If
+    this is the first push of the content and -wcmSiteArea has the default value
+    of "Script Portlet Library/Script Portlet Applications/", then a new Script
+    Application instance is created at the WCM path "Script Portlet Library/Script
+    Portlet Applications/My Application".  The user is queried for any required
+    options not provided by the configuration files and a log file of the push
+    execution is written to the current working directory.  If this content was
+    pushed previously, then the content of "My Application" is updated.
+
+SEE ALSO
+
+https://help.hcltechsw.com/digital-experience/8.5/script-portlet/cmd_line_push_ovr.html
+
+https://help.hcltechsw.com/digital-experience/8.5/script-portlet/cmd_line_push_cmd.html
+

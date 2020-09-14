@@ -1,0 +1,6 @@
+/build
+/coverage
+/release
+/test
+/.vscode
+/.nyc_output
