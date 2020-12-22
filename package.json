@@ -33,7 +33,7 @@
     "map-stream": "0.0.7",
     "mkdirp": "1.0.3",
     "node-fetch": "2.6.0",
-    "node-notifier": "5.4.3",
+    "node-notifier": "8.0.1",
     "nw": "0.42.0",
     "open": "7.0.3",
     "vinyl": "2.2.0",
