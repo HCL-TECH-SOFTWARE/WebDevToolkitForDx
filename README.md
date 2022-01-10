@@ -13,7 +13,7 @@ This toolkit includes four main areas of functionality:
 
 # Requirements
 To use these tools you will need:
-- Node.js must be installed on your workstation. Node.js version 12.14 is the minimum version and has had the most testing.
+- Node.js must be installed on your workstation. Node.js version 12.14 is the minimum version and has had the most testing. At this time node 14 or 16 or higher have not been tested and are not recommended.
 
   Note: You can verify that node.js is installed by running the following commands:
 
@@ -34,7 +34,7 @@ The Dashboard tool uses the nw.js package to implement the user interface, and o
 For any issues you encounter, please report them in the Issues area of this project (https://github.com/hcl-dx/WebDevToolkitForDx/issues).  We try to respond promptly to reported issues.
 
 # Installation
-You must first install Node.js.  Node.js version 12 is the minimum version and has had the most testing.
+You must first install Node.js.  Node.js version 12 is the minimum version and has had the most testing. At this time node 14 or 16 or higher have not been tested and are not recommended.
 
 Download the digexp-toolkit.zip file from here: https://github.com/hcl-dx/WebDevToolkitForDx/tree/master/release
 
